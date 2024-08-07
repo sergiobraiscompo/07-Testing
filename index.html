@@ -5,17 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="./src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Laboratorio 7 Testing </title>
   </head>
   <body>
+    <div id="puntuacion" class="puntuacion"></div>
+    <div id="mensaje" class="mensaje"></div>
+    
     <div id="tablero-display" class="tablero-display">
-      <div id="puntuacion" class="puntuacion"></div>
       <img id="carta" class="carta"></img>
-      <div id="mensaje"></div>
-
-      <button id="pedir_carta" class="boton">Pedir Carta</button>
-      <button id="me_planto" class="boton">Me planto</button>
+      
+      <div class="contenedor-botones" id="contenedor-botones">
+        <button id="pedir_carta" class="boton">Pedir Carta</button>
+        <button id="me_planto" class="boton">Me planto</button>
+      </div>
     </div>
+
 
     <script type="module" src="/src/main.ts"></script>
   </body>

@@ -3,13 +3,15 @@ interface Partida {
     puntuacion: number;
     carta: number;
     mensaje: string;
+    partidaAcabada: boolean
 }
 
 // Nueva partida
-export const nuevaPartida: Partida = {
+export const partida: Partida = {
     puntuacion: 0,
     carta: 0,
-    mensaje: ""
+    mensaje: "",
+    partidaAcabada: false
 }
 
 // Cartas del juego
@@ -51,16 +53,3 @@ export const carta_img_element = document.getElementById("carta");
 
 // Carpeta de imágenes
 export const cartas_folder = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/";
-
-
-// Suma la puntuación de la carta
-export const cambiaPuntuacion = (nueva_puntuacion: number) => {
-    puntuacion += nueva_puntuacion;
-}
-
-export const reiniciaPuntuacion = () => {
-    puntuacion = 0;
-}
-
-export let puntuacion = nuevaPartida.puntuacion;
-export let carta = nuevaPartida.carta;
