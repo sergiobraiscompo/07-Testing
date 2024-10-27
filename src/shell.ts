@@ -1,20 +1,15 @@
-import { queHabriaPasado, dameCarta, plantarse } from "./motor";
+import { botonMePlanto, botonPedirCarta } from "./constantes"
+import { handlePedirCarta, handlePlantarse } from "./main";
+import { creaNuevaInterfazPartida } from "./ui";
 
-
-// Gestionar click
-export const handle_click = (boton: string) => {
-    switch (boton) {
-        case "pedirCarta": {
-            dameCarta();
-            break;
-        }
-        case "mePlanto": {
-            plantarse();
-            break;
-        }
-        case "queHabriaPasado": {
-            queHabriaPasado();
-            break;
-        }
+export const events = () => {
+    if (
+        botonMePlanto && botonMePlanto != undefined && botonMePlanto != null &&
+        botonPedirCarta && botonPedirCarta != undefined && botonPedirCarta != null
+    ) {
+        botonPedirCarta.addEventListener("click", handlePedirCarta);
+        botonMePlanto.addEventListener("click", handlePlantarse)
     }
-};
+}
+
+document.addEventListener("DOMContentLoaded", () => { creaNuevaInterfazPartida(), events() });

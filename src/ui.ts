@@ -1,131 +1,101 @@
-import {
-    carta_img_element, cartas_folder, 
-    partida,
-    as_copas, dos_copas, tres_copas, cuatro_copas,
-    cinco_copas, seis_copas, siete_copas, sota_copas,
-    caballo_copas, rey_copas, carta_boca_abajo
-} from "./model";
+import { botonMePlanto, botonPedirCarta, cartaImgElement, cartas, contenedorBotonesElement, mensajeElement, puntuacionElement } from "./constantes";
+import { handleCreaNuevaPartida, handleQueHabriaPasado } from "./main";
+import { partida } from "./model";
 
-import * as constantes from "./constantes";
+const creaBotonNuevaPartida = () => {
+    const nuevaPartidaBoton = document.createElement("button");
+    nuevaPartidaBoton.innerText = "Nueva Partida";
+    nuevaPartidaBoton.id = "boton-nueva-partida";
+    nuevaPartidaBoton.className = "boton-nueva-partida";
+    nuevaPartidaBoton.onclick = () => handleCreaNuevaPartida();
 
-import { creaNuevaPartida, queHabriaPasado } from "./motor";
-
-
-// Muestra la parte trasera de las cartas
-export const muestraCartaPorDefecto = () => {
-    if (carta_img_element instanceof HTMLImageElement) {
-        carta_img_element.src = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/" + carta_boca_abajo;
-    }
+    contenedorBotonesElement?.appendChild(nuevaPartidaBoton);
 };
 
 
-// Función mostrar puntuación
+const creaBotonQueHabriaPasado = () => {
+    const queHabriaPasadoBoton = document.createElement("button");
+    queHabriaPasadoBoton.innerText = "¿Qué habría pasado?";
+    queHabriaPasadoBoton.id = "boton-que-habria-pasado";
+    queHabriaPasadoBoton.className = "boton-que-habria-pasado";
+    queHabriaPasadoBoton.onclick = () => handleQueHabriaPasado();
+
+    contenedorBotonesElement?.appendChild(queHabriaPasadoBoton);
+};
+
 export const muestraPuntuacion = () => {
-    if (constantes.puntuacion_element) {
-        constantes.puntuacion_element.innerHTML =  "Puntuación: "+ partida.puntuacion.toString();
+    if (puntuacionElement) {
+        puntuacionElement.innerHTML = "Puntuación: " + partida.puntuacion.toString();
     }
 };
 
-// Función mostrar puntuación
 export const muestraMensaje = () => {
-    if (constantes.mensaje_element) {
-        constantes.mensaje_element.innerHTML =  partida.mensaje;
-    };
+    if (mensajeElement) {
+        mensajeElement.innerHTML = partida.mensaje;
+    }
+};
+
+
+export const mostrarCarta = (carta: number): void => {
+    // Condicional que comprueba que los elementos sean instancias de HTMLImageElement
+    if (cartaImgElement && cartaImgElement != null && cartaImgElement != undefined) {
+        cartaImgElement.src = cartas[carta];
+    }
+};
+
+
+export const gestionaBotonesPartidaTerminada = () => {
+    // Habilita botones "pedir carta" y "plantarse"
+    if (
+        botonPedirCarta && botonPedirCarta != null && botonPedirCarta != undefined &&
+        botonMePlanto && botonMePlanto != null && botonMePlanto != undefined
+    ) {
+    
+        botonPedirCarta.disabled = true;
+        botonPedirCarta.className = "disabled-button";
+
+        botonMePlanto.disabled = true;
+        botonMePlanto.className = "disabled-button";
+    }
+
+    // Crea los botones "nueva partida" y "que habría pasado"
+    try {
+        creaBotonNuevaPartida();
+        creaBotonQueHabriaPasado();
+    } catch (error) {
+        console.error(error);
+    }
 }
 
+const reiniciaBotones = () => {
+    // Deshabilita botones "pedir carta" y "plantarse"
+    if (
+        botonPedirCarta && botonPedirCarta != null && botonPedirCarta != undefined &&
+        botonMePlanto && botonMePlanto != null && botonMePlanto != undefined
+    ) {
+        botonPedirCarta.disabled = false;
+        botonPedirCarta.className = "button";
 
-// Crea el botón nueva partida
-export const creaBotonNuevaPartida = () => {
-    const nueva_partida_boton = document.createElement("button");
-    nueva_partida_boton.innerText = "Nueva Partida";
-    nueva_partida_boton.id = "boton-nueva-partida";
-    nueva_partida_boton.className = "boton-nueva-partida";
-    nueva_partida_boton.onclick = () => creaNuevaPartida();
-
-    // Añadiendo el botón nueva partida en pantalla
-    constantes.contenedor_botones_element?.appendChild(nueva_partida_boton);
-};
-
-
-// Crea botón queHabriaPasado
-export const creaBotonQueHabriaPasado = () => {
-    const que_habria_pasado_boton = document.createElement("button");
-
-    que_habria_pasado_boton.innerText = "¿Qué habría pasado?";
-    que_habria_pasado_boton.id = "boton-que-habria-pasado";
-    que_habria_pasado_boton.className = "boton-que-habria-pasado";
-    que_habria_pasado_boton.onclick = () => queHabriaPasado();
-
-    // Añadiendo el botón nueva partida en pantalla
-    constantes.contenedor_botones_element?.appendChild(que_habria_pasado_boton);
-};
-
-
-// Muestra la carta actual
-export const mostrarCarta = (carta: number) : void => {
-
-    let ruta_carta = "";
-
-    // Devolver carta aleatoria
-    switch (carta) {
-        case 1: {
-            ruta_carta = cartas_folder + as_copas;
-            break;
-        }
-
-        case 2: {
-            ruta_carta = cartas_folder + dos_copas;
-            break;
-        }
-
-        case 3: {
-            ruta_carta = cartas_folder + tres_copas;
-            break;
-        }
-
-        case 4: {
-            ruta_carta = cartas_folder + cuatro_copas;
-            break;
-        }
-
-        case 5: {
-            ruta_carta = cartas_folder + cinco_copas;
-            break;
-        }
-
-        case 6: {
-            ruta_carta = cartas_folder + seis_copas;
-            break;
-        }
-
-        case 7: {
-            ruta_carta = cartas_folder + siete_copas;
-            break;
-        }
-
-        case 10: {
-            ruta_carta = cartas_folder + sota_copas;
-            break;
-        }
-
-        case 11: {
-            ruta_carta = cartas_folder + caballo_copas;
-            break;
-        }
-
-        case 12: {
-            ruta_carta = cartas_folder + rey_copas;
-            break;
-        }
-
-        default: {
-            ruta_carta = "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/" + carta_boca_abajo;
-            break;
-        }
-    };
-
-    // Condicional que comprueba que los elementos sean instancias de HTMLImageElement
-    if (carta_img_element instanceof HTMLImageElement) {
-            carta_img_element.src = ruta_carta;
+        botonMePlanto.disabled = false;
+        botonMePlanto.className = "button";
     }
-};
+    
+    // Elimina botones "nueva partida" y "que habría pasado"
+    const botonNuevaPartidaElement = document.getElementById("boton-nueva-partida");
+    const botonQueHabriaPasadoElement = document.getElementById("boton-que-habria-pasado");
+   
+    if (
+        botonNuevaPartidaElement && botonNuevaPartidaElement != null && botonNuevaPartidaElement != undefined &&
+        botonQueHabriaPasadoElement && botonQueHabriaPasadoElement != null && botonQueHabriaPasadoElement != undefined
+    ) {
+        botonNuevaPartidaElement.remove();
+        botonQueHabriaPasadoElement.remove();
+    }
+}
+
+export const creaNuevaInterfazPartida = () => {
+    reiniciaBotones();
+    muestraPuntuacion();
+    mostrarCarta(partida.carta)
+    muestraMensaje();
+}

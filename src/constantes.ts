@@ -1,16 +1,25 @@
-import { handle_click } from "./shell";
-
-
 // Elementos HTML
-export const mensaje_element = document.getElementById("mensaje");
-export const tablero_element = document.getElementById("tablero");
-export const puntuacion_element = document.getElementById("puntuacion");
-export const contenedor_botones_element = document.getElementById("contenedor-botones");
+export const cartaImgElement = document.getElementById("carta") as HTMLImageElement;
+export const mensajeElement = document.getElementById("mensaje") as HTMLDivElement;
+export const tableroElement = document.getElementById("tablero") as HTMLDivElement;
+export const puntuacionElement = document.getElementById("puntuacion") as HTMLDivElement;
+export const contenedorBotonesElement = document.getElementById("contenedor-botones") as HTMLDivElement;
 
-// Botón pedir carta
-export const boton_pedir_carta = document.getElementById("pedir_carta");
-boton_pedir_carta?.addEventListener("click", () => handle_click("pedirCarta"));
+// Botones acción
+export const botonMePlanto = document.getElementById("me_planto") as HTMLButtonElement;
+export const botonPedirCarta = document.getElementById("pedir_carta") as HTMLButtonElement;
 
-// Botón mePlanto
-export const boton_me_planto = document.getElementById("me_planto");
-boton_me_planto?.addEventListener("click", () => handle_click("mePlanto"));
+// Cartas del juego
+export const cartas = [
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/back.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/1_as-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/2_dos-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/3_tres-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/4_cuatro-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/5_cinco-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/6_seis-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/7_siete-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/10_sota-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/11_caballo-copas.jpg",
+    "https://raw.githubusercontent.com/Lemoncode/fotos-ejemplos/main/cartas/copas/12_rey-copas.jpg"
+]
