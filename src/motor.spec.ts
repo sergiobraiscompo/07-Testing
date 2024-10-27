@@ -1,18 +1,38 @@
 import { partida } from "./model";
-import { sumarPuntuacion } from "./motor";
-import vi from "vitest"
+import { gameOver } from "./motor";
 
-describe("sumarPuntuacion", () => {
-    it("Comprueba si la función cartaAleatoria puede devolver 1", () => {
+describe("gameOver", () => {
+    it("Comprueba si la función gameOver cambia la variable partida.partidaAcabada y devuelve el mensaje pertinente", () => {
         // Arrange
-        let puntuacionEsperada: number = 1;
-        const numeroCarta = vi.spyOn(partida.carta, "cartaAleatoria", "get").mockReturnValue(12);
+        partida.puntuacion = 6;
 
         // Act
-        const puntuacionNueva: number = sumarPuntuacion(numeroCarta);
+        gameOver();
 
         // Assert
-        expect(puntuacionEsperada).toBe(puntuacion);
+        expect(partida.mensaje).not.toEqual("Has hecho más de 7 puntos y medio, partida terminada.");
     });
 
+    it("Comprueba si la función gameOver cambia la variable partida.partidaAcabada y devuelve el mensaje pertinente", () => {
+        // Arrange
+        partida.puntuacion = 7.5;
+
+        // Act
+        gameOver();
+
+        // Assert
+        expect(partida.mensaje).not.toEqual("Has hecho más de 7 puntos y medio, partida terminada.");
+    });
+
+
+    it("Comprueba si la función gameOver cambia la variable partida.partidaAcabada y devuelve el mensaje pertinente", () => {
+        // Arrange
+        partida.puntuacion = 7.6;
+
+        // Act
+        gameOver();
+
+        // Assert
+        expect(partida.mensaje).toEqual("Has hecho más de 7 puntos y medio, partida terminada.");
+    });
 });
