@@ -7,7 +7,7 @@ export const gameOver = () => {
     }
 };
 
-const sumarPuntuacion = (carta: number) => {
+export const sumarPuntuacion = (carta: number) => {
     let puntuacionCarta = 0;
 
     // Devualve el valor de la carta

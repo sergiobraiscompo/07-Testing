@@ -1,50 +1,18 @@
-import { cartaAleatoria } from "./motor";
+import { partida } from "./model";
+import { sumarPuntuacion } from "./motor";
+import vi from "vitest"
 
-describe("cartaAleatoria", () => {
+describe("sumarPuntuacion", () => {
     it("Comprueba si la función cartaAleatoria puede devolver 1", () => {
         // Arrange
-        let numeroEsperado: number = 1;
+        let puntuacionEsperada: number = 1;
+        const numeroCarta = vi.spyOn(partida.carta, "cartaAleatoria", "get").mockReturnValue(12);
 
         // Act
-        const numeroAleatorio: number = cartaAleatoria();
+        const puntuacionNueva: number = sumarPuntuacion(numeroCarta);
 
         // Assert
-        expect(numeroAleatorio).toBe(numeroEsperado);
-    });
-
-    it("Comprueba si la función cartaAleatoria puede devolver 4", () => {
-        // Arrange
-        let numeroEsperado: number = 4;
-
-        // Act
-        const numeroAleatorio: number = cartaAleatoria();
-
-        // Assert
-        expect(numeroAleatorio).toBe(numeroEsperado);        
-    });
-
-    it("Comprueba si la función cartaAleatoria puede devolver 7", () => {
-        // Arrange
-        let numeroEsperado: number = 7;
-
-        // Act
-        const numeroAleatorio: number = cartaAleatoria();
-
-        // Assert
-        expect(numeroAleatorio).toBe(numeroEsperado);
-        
-    });
-
-    it("Comprueba si la función cartaAleatoria puede devolver 10", () => {
-        // Arrange
-        let numeroEsperado: number = 10;
-
-        // Act
-        const numeroAleatorio: number = cartaAleatoria();
-
-        // Assert
-        expect(numeroAleatorio).toBe(numeroEsperado);
-        
+        expect(puntuacionEsperada).toBe(puntuacion);
     });
 
 });
