@@ -83,7 +83,7 @@ export const plantarse = () => {
         partida.mensaje = "¡Lo has clavado! ¡Enhorabuena!";
     }
 
-    if (partida.puntuacion === 6 || partida.puntuacion === 7) {
+    if (partida.puntuacion >= 6 && partida.puntuacion <= 7.4) {
         partida.mensaje = "Casi casi ...";
     }
 
