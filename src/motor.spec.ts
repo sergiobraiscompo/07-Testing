@@ -1,5 +1,5 @@
 import { partida } from "./model";
-import { cartaAleatoria, gameOver, plantarse } from "./motor";
+import { cartaAleatoria, gameOver, plantarse, sumarPuntuacion } from "./motor";
 import { vi } from "vitest";
 
 describe("gameOver", () => {
@@ -90,7 +90,7 @@ describe("plantarse", () => {
 
 });
 
-describe("carta aleatoria", () => {
+describe("cartaAleatoria", () => {
     it("MathRandom lo forzamos a que devuelva 0, debería de devolver 1", () => {
         // Arrange
         const numeroEsperado = 1;
@@ -128,4 +128,18 @@ describe("carta aleatoria", () => {
         // Assert
         expect(resultado).toBe(numeroEsperado);
     })
+})
+
+describe("sumarPuntuacion", () => {
+    it("Si recibe 10 debe sumar 0.5 a partida.puntuacion"), () => {
+        // Arrange
+        partida.puntuacion = 3;
+        const resultadoEsperado = 45;
+
+        // Act
+        sumarPuntuacion(5);
+        
+        // Assert
+        expect(partida.puntuacion).toBe(resultadoEsperado);
+    }
 })
