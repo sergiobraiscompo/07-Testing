@@ -88,6 +88,22 @@ describe("plantarse", () => {
         expect(partida.mensaje).toEqual("Has sido muy conservador");
     });
 
+});
+
+describe("carta aleatoria", () => {
+    it("MathRandom lo forzamos a que devuelva 0, debería de devolver 1", () => {
+        // Arrange
+        const numeroEsperado = 1;
+        vi.spyOn(global.Math, 'random').mockReturnValue(0);
+
+        // Act
+        const resultado = cartaAleatoria();
+
+        // Assert
+        expect(resultado).toBe(numeroEsperado);
+    });
+
+
     it("MathRandom lo forzamos a que devuelva 0.9, debería de devolver 10", () => {
         // Arrange
         const numeroEsperado = 10;
@@ -111,17 +127,5 @@ describe("plantarse", () => {
 
         // Assert
         expect(resultado).toBe(numeroEsperado);
-    });
-
-    it("MathRandom lo forzamos a que devuelva 0, debería de devolver 1", () => {
-        // Arrange
-        const numeroEsperado = 1;
-        vi.spyOn(global.Math, 'random').mockReturnValue(0);
-
-        // Act
-        const resultado = cartaAleatoria();
-
-        // Assert
-        expect(resultado).toBe(numeroEsperado);
-    });
-});
+    })
+})
