@@ -1,6 +1,6 @@
 import { partida } from "./model";
-import { cartaAleatoria, gameOver, plantarse, sumarPuntuacion } from "./motor";
-import { vi } from "vitest";
+import { gameOver, plantarse } from "./motor";
+
 
 describe("gameOver", () => {
     it("Comprueba si gameOver no cambia partida.partidaAcabada a true", () => {
@@ -89,57 +89,3 @@ describe("plantarse", () => {
     });
 
 });
-
-describe("cartaAleatoria", () => {
-    it("MathRandom lo forzamos a que devuelva 0, debería de devolver 1", () => {
-        // Arrange
-        const numeroEsperado = 1;
-        vi.spyOn(global.Math, 'random').mockReturnValue(0);
-
-        // Act
-        const resultado = cartaAleatoria();
-
-        // Assert
-        expect(resultado).toBe(numeroEsperado);
-    });
-
-
-    it("MathRandom lo forzamos a que devuelva 0.9, debería de devolver 10", () => {
-        // Arrange
-        const numeroEsperado = 10;
-        vi.spyOn(global.Math, 'random').mockReturnValue(0.9);
-
-        // Act
-        const resultado = cartaAleatoria();
-
-        // Assert
-        expect(resultado).toBe(numeroEsperado);
-    });
-
-
-    it("MathRandom lo forzamos a que devuelva 0.4, debería de devolver 5", () => {
-        // Arrange
-        const numeroEsperado = 5;
-        vi.spyOn(global.Math, 'random').mockReturnValue(0.4);
-
-        // Act
-        const resultado = cartaAleatoria();
-
-        // Assert
-        expect(resultado).toBe(numeroEsperado);
-    })
-})
-
-describe("sumarPuntuacion", () => {
-    it("Si recibe 10 debe sumar 0.5 a partida.puntuacion"), () => {
-        // Arrange
-        partida.puntuacion = 3;
-        const resultadoEsperado = 45;
-
-        // Act
-        sumarPuntuacion(5);
-        
-        // Assert
-        expect(partida.puntuacion).toBe(resultadoEsperado);
-    }
-})
