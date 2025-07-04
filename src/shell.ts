@@ -1,15 +1,12 @@
-import { botonMePlanto, botonPedirCarta } from "./constantes"
-import { handlePedirCarta, handlePlantarse } from "./main";
-import { creaNuevaInterfazPartida } from "./ui";
+import { dameCarta, plantarse } from "./motor";
+import { botonMePlanto, botonPedirCarta } from "./constantes";
 
-export const events = () => {
+export const eventos = () => {
     if (
-        botonMePlanto && botonMePlanto != undefined && botonMePlanto != null &&
-        botonPedirCarta && botonPedirCarta != undefined && botonPedirCarta != null
+        botonPedirCarta && botonPedirCarta != undefined && botonPedirCarta != null 
+        && botonMePlanto && botonMePlanto != undefined && botonMePlanto != null
     ) {
-        botonPedirCarta.addEventListener("click", handlePedirCarta);
-        botonMePlanto.addEventListener("click", handlePlantarse)
+        botonPedirCarta.addEventListener("click", () => dameCarta());
+        botonMePlanto.addEventListener("click", () => plantarse());
     }
 }
-
-document.addEventListener("DOMContentLoaded", () => { creaNuevaInterfazPartida(), events() });
